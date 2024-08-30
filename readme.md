@@ -18,9 +18,9 @@ Processing API**.
 The combination of these three API should give users the ability to
 edit, render and analysis spatial information.
 
-Spatial Server also exposes its internal metrics via Open Telemetry
-(OTEL). This will allow you to monitor your server via open source and
-standard tools.
+Spatial Server also exposes its internal metrics via [Open
+Telemetry](https://opentelemetry.io/) (OTEL). This will allow you to
+monitor your server via open source and standard tools.
 
 ## Develop
 
