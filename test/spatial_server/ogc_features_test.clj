@@ -2,6 +2,7 @@
   "Namespace to capture ogc api complaince."
   (:require
    [matcher-combinators.test]
+   [reitit.core  :as reitit]
    [spatial-server.routes :as routes]
    ;; [matcher-combinators.matchers :as m]
    [clojure.test :as t :refer [deftest is testing]]
@@ -10,12 +11,20 @@
 ;; https://developer.ogc.org/api/features/index.html#tag/Capabilities/operation/getLandingPage
 
 (defn test-request
-  [& {:keys [method uri params] :or {method :get
-                                     params {}}}]
+  [& {:keys [method uri params route-name]
+      :or {method :get
+           params {}}}]
 
-  (routes/app
-   (mock/request
-    method uri params)))
+  (let [path (reitit/match-by-name
+              (routes/router)
+              route-name
+              params)]
+
+    (routes/app
+     (mock/request
+      method
+      (or (:path path) uri)
+      params))))
 
 ;; https://developer.ogc.org/conformance
 (deftest features-test:conformance
@@ -28,6 +37,15 @@
     (testing "http:get"
       (is (match? nil
                   (test-request {:uri "/collections"}))))))
+
+(deftest features-test-route-name
+
+  (let [response (test-request {:route-name :index})]
+
+    (is
+     (match?
+      nil
+      response))))
 
 (def default-collection-name
   "oakland_buildings")
