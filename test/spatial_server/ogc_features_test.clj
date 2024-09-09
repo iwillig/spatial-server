@@ -1,5 +1,5 @@
 (ns ^:ogc spatial-server.ogc-features-test
-  "Namespace to capture ogc api complaince."
+  "Namespace to capture ogc api compliance."
   (:require
    [matcher-combinators.test]
    [reitit.core  :as reitit]

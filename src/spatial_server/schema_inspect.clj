@@ -11,7 +11,7 @@
    ::table-name      (:pg_class/table record)
    ::geometry-column (:pg_attribute/geometry_column record)
    ::srid            (:srid record)
-   ::gemoetry_type   (:geometry_type record)})
+   ::geometry_type   (:geometry_type record)})
 
 (def
 

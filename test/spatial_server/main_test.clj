@@ -4,6 +4,6 @@
    ;; [matcher-combinators.matchers :as m]
    [clojure.test :as t :refer [deftest is testing]]))
 
-(deftest  test-baisc-test
+(deftest  test-basic-test
   (testing "Context of the test assertions"
     (is (match? nil {}))))
